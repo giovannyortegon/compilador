@@ -11,4 +11,4 @@ o copiar y pegar en /bin/<br>
 cp /w64-mingw32_wine /bin
 
 <h3>Ejecutar:</h3>
-w64-mingw32_wine <file.c>
+w64-mingw32_wine &#60;file.c&#62;
