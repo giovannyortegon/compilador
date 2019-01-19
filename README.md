@@ -2,13 +2,13 @@
 
 Compilara a .exe y ejecutará la libreria conio.h del c en Linux.
 
-<h3>Nota:</h3> debe tener instalado wine de 64bits.
+<strong>Nota:</strong> debe tener instalado wine de 64bits.
 
-<h3>Intrucciones:</h3><br>
-./w64-mingw32_wine <file.c>
+<h3>Intrucciones:</h3>
+./w64-mingw32_wine <file.c><br>
 
 o copiar y pegar en /bin/<br> 
 cp /w64-mingw32_wine /bin
 
-<h3>Ejecutar:</h3><br>
+<h3>Ejecutar:</h3>
 w64-mingw32_wine <file.c>
