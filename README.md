@@ -1,12 +1,12 @@
 <h1>Compilador con w64-mingw32-gcc para linux ejecutado con Wine</h1>
-<h2>Instalacion w64-mingw32-gcc</2>
+<h2>Instalacion w64-mingw32-gcc</h2>
 apt-get update<br>
 apt-get install mingw-w64<br>
 
 <h2>Instalacion Win y wine64</h2>
-apt-get update
-apt-get install wine
-apt-get install wine64 //Si su equipo es de 64bits
+apt-get update<br>
+apt-get install wine<br>
+apt-get install wine64 //Si su equipo es de 64bits<br>
 
 Compilará a .exe y ejecutará la libreria conio.h del c en Linux.
 
