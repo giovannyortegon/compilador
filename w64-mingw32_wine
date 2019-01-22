@@ -23,6 +23,7 @@ figlet COMPILADOR w64 Ming32
 echo -e "$reset"
 #titulo
 echo -e "\n${verde} ********* Bienvenido al compilador .exe en linux **********$reset"
+echo -e "\n${verde} ********************** Autor: Skill ***********************$reset"
 echo -e "\n[${azul}*$reset] ${amarillo}Compilando \c "
 pausar
 echo -e "$reset\n"
