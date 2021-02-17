@@ -1,5 +1,5 @@
-##Compilador con w64-mingw32-gcc para linux ejecutado con Wine
-#Instalacion w64-mingw32-gcc
+# Compilador con w64-mingw32-gcc para linux ejecutado con Wine
+## Instalacion w64-mingw32-gcc
 ```
 Project developed in Bash Script to compile and execute a file .exe
 in Linux using tools installed in Linux.
@@ -9,7 +9,7 @@ in Linux using tools installed in Linux.
 apt-get update<br>
 apt-get install mingw-w64<br>
 ```
-#Instalacion Win y wine64
+## Instalacion Win y wine64
 ```
 apt-get update<br>
 apt-get install wine<br>
@@ -17,11 +17,11 @@ apt-get install wine64 //Si su equipo es de 64bits<br>
 ```
 Compilará a .exe y ejecutará la libreria conio.h del c en Linux.
 
-# Nota:
+## Nota:
 ```
  debe tener instalado wine de 64bits.
 ```
-#Intrucciones:
+# Intrucciones:
 ```
 apt-get update<br>
 apt-get install mingw-w64<br>
@@ -37,7 +37,7 @@ o copiar y pegar en /bin/<br>
 cd /compilador/<br>
 cp w64-mingw32_wine /bin
 ```
-#Ejecutar:
+# Ejecutar:
 ```
 w64-mingw32_wine &#60;file.c&#62;
 ```
