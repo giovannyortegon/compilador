@@ -10,13 +10,30 @@ amarillo="\033[33m"
 azul="\033[34m"
 reset="\033[0m"
 #funcion para Pausar
-pausar(){
+pausar()
+{
 	for i in  {1..3}
 	do
 		echo -e ". \c"
 		sleep 0.5
 	done
 }
+#pausar y solicitar la finalizacion del programa
+salir()
+{
+	echo -e "[${rojo}*$reset] ${verde}\c"
+	read -n1 -p "Presione una tecla para terminar..."
+	echo -e "$reset"
+	exit $1
+}
+error_function()
+{
+	echo -e "\n[${amarillo}*$reset][${rojo} ********** ¡¡ Error !! **********$reset ]\n"
+	echo -e "\n[${rojo}*$reset][ "$1" ]\n"
+	echo
+	salir 1
+}
+
 #titulo principal
 echo -e "${azul}"
 figlet COMPILADOR w64 Ming32
@@ -27,26 +44,53 @@ echo -e "\n${verde} ********************** Autor: Skill ***********************$
 echo -e "\n[${azul}*$reset] ${amarillo}Compilando \c "
 pausar
 echo -e "$reset\n"
-#separar el nombre del archivo del .c
-a="$1"
-b="${a##*/}"
-filename=${b%.*}.exe
-#compilador
-i686-w64-mingw32-gcc $1 -o $filename
-#comprobar errores
-if [ $? -eq 0 ]
+
+# Separar el nombre del archivo del .c
+file_name="$1"
+#if [[ -z $2 ]]
+#then
+#	var_arg=$2
+#fi
+# Empty file
+if [[ -z $file_name ]]
 then
-	echo -e "\n[${azul}*$reset] ${amarillo}Ejecutando \c "
-	pausar
-	echo -e "$reset"
-	var=$( pwd)
-	xterm -T "$var/$1" -e wine $filename
-	echo -e "\n\n[${azul}*$reset] ${amarillo}Proceso finalizado$reset\n"
-else
-	echo -e "\n[${amarillo}*$reset][${rojo} ********** ¡¡ Error !! **********$reset ]\n"
+	error_function "w64-mingw32_wine: missing file operator"
 fi
-#pausar y solicitar la finalizacion del programa
-echo -e "[${rojo}*$reset] ${verde}\c"
-read -n1 -p "Presione una tecla para terminar..."
-echo -e "$reset"
-exit 0
+extension=${file_name#*.}
+
+if [[ -z $extension ]]
+then
+	error_function "w64-mingw32_wine:  must be file c or cpp"
+else
+	if [[ $extension == 'c' ]] || [[ $extension == 'cpp' ]]
+	then
+		get_name=${file_name%.*}
+		filename=${get_name%.*}.exe
+	else
+		error_function "w64-mingw32_wine:  must be file c or cpp"
+	fi
+
+# Compilador
+	if [[ "$extension" == "c" ]]
+	then
+		i686-w64-mingw32-gcc $1 -o $filename
+	else
+		i686-w64-mingw32-g++ $1 -o $filename
+	fi
+
+	# comprobar errores
+	if [ $? -eq 0 ]
+	then
+		echo -e "\n[${azul}*$reset] ${amarillo}Ejecutando \c "
+		pausar
+		echo -e "$reset"
+		var=$( pwd)
+		xterm -T "$var/$1" -e wine $filename
+		echo -e "\n\n[${azul}*$reset] ${amarillo}Proceso finalizado$reset\n"
+		salir 0
+	else
+		echo $?
+		salir 1
+	fi
+fi
+

@@ -1,0 +1,18 @@
+1. Enable 32 architecture
+sudo dpkg --add-architecture i386
+
+2. Confirmar
+dpkg --print-foreign-architectures
+
+3. Add wine repository
+sudo apt install software-properties-common wget -y
+
+wget -O- -q https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/Debian_10/Release.key | sudo apt-key add -
+
+sudo add-apt-repository 'deb http://download.opensuse.org/repositories/Emulators:/Wine:/Debian/Debian_10 ./'
+
+4. Install Wine 6
+
+sudo apt update
+
+sudo apt install --install-recommends winehq-stable
